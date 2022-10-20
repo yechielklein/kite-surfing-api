@@ -1,8 +1,10 @@
 require('dotenv').config()
+const cors = require('cors')
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT
+app.use(cors())
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
@@ -14,7 +16,7 @@ app.get('/hi', (req, res) => {
 })
 
 app.post('/hi', (req, res) => {
-	res.send(`Hi from  ${req.body.hifrom}`)
+	res.send(`Hi from ${req.body.hifrom}`)
 })
 
 app.listen(port, () => {
