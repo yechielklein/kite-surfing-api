@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Kite {
+    id          Int      @id @default(autoincrement())
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    price       Int
+    brand       String
+    model       String
+    year        Int
+    size        Float
+    description String?
+    onSale      Boolean  @default(false)
+    seller      User     @relation(fields: [sellerId], references: [id])
+    sellerId    Int
+    country     String
+    city        String
+    address     String
+}
+
+model User {
+    id    Int     @id @default(autoincrement())
+    email String  @unique
+    name  String?
+    kites Kite[]
+}
