@@ -10,6 +10,7 @@ export const getUsers = async () => {
 	console.dir(allUsers, { depth: null })
 	return allUsers
 }
+
 export const addUser = async () => {
 	await prisma.user.create({
 		data: {
@@ -20,12 +21,12 @@ export const addUser = async () => {
 			},
 		},
 	})
+}
 
-	const allUsers = await prisma.user.findMany({
-		include: {
-			posts: true,
-			profile: true,
-		},
+export const addKite =  async () => {
+	const kite = await prisma.kite.update({
+		where: { id: 1 },
+		data: { published: true },
 	})
-	console.dir(allUsers, { depth: null })
+	console.log(kite)
 }
