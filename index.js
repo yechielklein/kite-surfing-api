@@ -11,8 +11,8 @@ const port = process.env.PORT
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
-	res.send('Hello World!')
+app.get('/', async (req, res) => {
+	res.send(await getUsers())
 })
 
 app.get('/hi', (req, res) => {

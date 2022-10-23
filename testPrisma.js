@@ -4,20 +4,28 @@ const prisma = new PrismaClient()
 export const getUsers = async () => {
 	const allUsers = await prisma.user.findMany({
 		include: {
-			kite: true,
+			kites: true,
 		},
 	})
-	console.dir(allUsers, { depth: null })
 	return allUsers
 }
 
 export const addUser = async () => {
 	await prisma.user.create({
 		data: {
-			name: 'test',
-			email: 'test@prisma.io',
+			name: 'Yechiel Klein',
+			email: 'kleinyechiel@gmail.com',
 			kites: {
-				create: { size: 5.5 },
+				create: {
+					price: 1000,
+					brand: 'testBrand',
+					model: 'testModel',
+					year: 2007,
+					size: 5.5,
+					country: 'canada',
+					city: 'montreal',
+					address: '1972 ekers'
+				},
 			},
 		},
 	})
@@ -26,7 +34,8 @@ export const addUser = async () => {
 export const addKite =  async () => {
 	const kite = await prisma.kite.update({
 		where: { id: 1 },
-		data: { published: true },
+		data: { onSale: true },
 	})
 	console.log(kite)
+	return kite
 }
