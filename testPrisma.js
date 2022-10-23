@@ -1,41 +1,51 @@
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export const getUsers = async () => {
-	const allUsers = await prisma.user.findMany({
-		include: {
-			kites: true,
-		},
-	})
-	return allUsers
-}
+  const allUsers = await prisma.user.findMany({
+    include: {
+      kites: true,
+    },
+  });
+  return allUsers;
+};
 
-export const addUser = async () => {
-	await prisma.user.create({
-		data: {
-			name: 'Yechiel Klein',
-			email: 'kleinyechiel@gmail.com',
-			kites: {
-				create: {
-					price: 1000,
-					brand: 'testBrand',
-					model: 'testModel',
-					year: 2007,
-					size: 5.5,
-					country: 'canada',
-					city: 'montreal',
-					address: '1972 ekers'
-				},
-			},
-		},
-	})
-}
+export const addUser = async (
+  name,
+  email,
+  kitePrice,
+  kiteBrand,
+  kiteModel,
+  kiteYear,
+  kiteSize,
+  kiteCountry,
+  kiteCity,
+  kiteAdress
+) => {
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+      kites: {
+        create: {
+          price: kitePrice,
+          brand: kiteBrand,
+          model: kiteModel,
+          year: kiteYear,
+          size: kiteSize,
+          country: kiteCountry,
+          city: kiteCity,
+          address: kiteAdress,
+        },
+      },
+    },
+  });
+};
 
-export const addKite =  async () => {
-	const kite = await prisma.kite.update({
-		where: { id: 1 },
-		data: { onSale: true },
-	})
-	console.log(kite)
-	return kite
-}
+export const setKiteSellability = async (id, onSale) => {
+  const kite = await prisma.kite.update({
+    where: { id },
+    data: { onSale },
+  });
+  return kite;
+};
