@@ -10,6 +10,13 @@ export const getUsers = async () => {
     return allUsers;
 };
 
+export const getKites = async () => {
+	const allKites = await prisma.kite.findMany({
+		where : { onSale: true }
+	})
+	return allKites
+}
+
 export const addUser = async (email, name = undefined) => {
     await prisma.user.create({
         data: {
