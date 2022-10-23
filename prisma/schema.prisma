@@ -20,7 +20,7 @@ model Kite {
     year        Int
     size        Float
     description String?
-    onSale      Boolean  @default(false)
+    onSale      Boolean  @default(true)
     seller      User     @relation(fields: [sellerId], references: [id])
     sellerId    Int
     country     String
