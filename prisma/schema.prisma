@@ -14,7 +14,7 @@ model Kite {
     id          Int      @id @default(autoincrement())
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
-    price       Float
+    price       Int
     brand       String
     model       String
     year        Int
