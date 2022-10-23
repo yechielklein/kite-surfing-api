@@ -10,35 +10,40 @@ export const getUsers = async () => {
     return allUsers;
 };
 
-export const addUser = async (
-    name,
-    email,
-    kitePrice,
-    kiteBrand,
-    kiteModel,
-    kiteYear,
-    kiteSize,
-    kiteCountry,
-    kiteCity,
-    kiteAdress
-) => {
+export const addUser = async (email, name = undefined) => {
     await prisma.user.create({
         data: {
             name,
-            email,
-            kites: {
-                create: {
-                    price: kitePrice,
-                    brand: kiteBrand,
-                    model: kiteModel,
-                    year: kiteYear,
-                    size: kiteSize,
-                    country: kiteCountry,
-                    city: kiteCity,
-                    address: kiteAdress
-                }
-            }
+            email
         }
+    });
+};
+
+export const addKite = async (
+    sellerId,
+    price,
+    brand,
+    model,
+    year,
+    size,
+    country,
+    city,
+    address,
+	description = undefined
+) => {
+    const kite = await prisma.kite.create({
+        data: {
+			price,
+			brand,
+			model,
+			year,
+			size,
+			country,
+			city,
+			address,
+			description,
+			sellerId
+		}
     });
 };
 
