@@ -29,28 +29,43 @@ export const addKite = async (
     country,
     city,
     address,
-	description = undefined
+    description = undefined
 ) => {
-    const kite = await prisma.kite.create({
+    await prisma.kite.create({
         data: {
-			price,
-			brand,
-			model,
-			year,
-			size,
-			country,
-			city,
-			address,
-			description,
-			sellerId
-		}
+            price,
+            brand,
+            model,
+            year,
+            size,
+            country,
+            city,
+            address,
+            description,
+            sellerId
+        }
     });
 };
 
 export const setKiteSellability = async (id, onSale) => {
-    const kite = await prisma.kite.update({
+    await prisma.kite.update({
         where: { id },
         data: { onSale }
     });
-    return kite;
+};
+
+export const deleteUser = async (id) => {
+    await prisma.kite.deleteMany({
+        where: { sellerId: id }
+    });
+
+    await prisma.user.delete({
+        where: { id }
+    });
+};
+
+export const deleteKite = async (id) => {
+    await prisma.kite.delete({
+        where: { id }
+    });
 };
