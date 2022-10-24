@@ -11,16 +11,12 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
+    res.send('Hi Ta! from Yechiel');
+});
+
+app.get('/kites', async (req, res) => {
     res.send(await getKites());
-});
-
-app.get('/hi', (req, res) => {
-    res.send('Hi from yechiel');
-});
-
-app.post('/hi', (req, res) => {
-    res.send(`Hi from ${req.body.hifrom}`);
 });
 
 app.listen(port, () => {
