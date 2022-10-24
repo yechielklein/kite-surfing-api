@@ -11,19 +11,21 @@ export const getUsers = async () => {
 };
 
 export const getKites = async () => {
-	const allKites = await prisma.kite.findMany({
-		where : { onSale: true }
-	})
-	return allKites
-}
+    const allKites = await prisma.kite.findMany({
+        where: { onSale: true }
+    });
+    return allKites;
+};
 
 export const addUser = async (email, name = undefined) => {
-    return ((await prisma.user.create({
-        data: {
-            name,
-            email
-        }
-    })).id);
+    return (
+        await prisma.user.create({
+            data: {
+                name,
+                email
+            }
+        })
+    ).id;
 };
 
 export const addKite = async (
