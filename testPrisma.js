@@ -36,7 +36,7 @@ export const addKite = async (
     country,
     city,
     address,
-    description = undefined
+    notes = undefined
 ) => {
     await prisma.kite.create({
         data: {
@@ -48,7 +48,7 @@ export const addKite = async (
             country,
             city,
             address,
-            description,
+            notes,
             sellerId
         }
     });
