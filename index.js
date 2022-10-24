@@ -16,7 +16,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signup', async (req, res) => {
-	await addUser(req.body.email, req.body.name)
+	const id = await addUser(req.body.email, req.body.name)
+	res.send(`Your ID is ${id}`)
 })
 
 app.get('/kites', async (req, res) => {
