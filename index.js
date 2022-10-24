@@ -15,6 +15,10 @@ app.get('/', (req, res) => {
     res.send('Hi Ta! from Yechiel');
 });
 
+app.post('/signup', async (req, res) => {
+	await addUser(req.body.email, req.body.name)
+})
+
 app.get('/kites', async (req, res) => {
     res.send(await getKites());
 });
