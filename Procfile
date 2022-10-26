@@ -1,1 +1,1 @@
-release: npm prisma migrate deploy
+release: npm prisma migrate dev
