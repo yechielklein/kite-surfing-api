@@ -38,8 +38,8 @@ export const addKite = async (
     city,
     address,
     notes = undefined
-) => {
-    await prisma.kite.create({
+) => (
+    (await prisma.kite.create({
         data: {
             price,
             brand,
@@ -52,8 +52,8 @@ export const addKite = async (
             notes,
             sellerId
         }
-    });
-};
+    })).id
+);
 
 export const setKiteSellability = async (id, onSale) => {
     await prisma.kite.update({
