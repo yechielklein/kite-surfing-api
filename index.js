@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
 import bodyParser from 'body-parser';
-import { getUsers, addUser, addKite, setKiteSellability, deleteUser, deleteKite, getKites } from './prisma.js';
+import { getUsers, addUser, addKite, setKiteSellability, deleteUser, deleteKite, getKites } from './prismaFunctions.js';
 
 dotenv.config();
 const app = express();
