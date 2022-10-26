@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signup', async (req, res) => {
-	const id = await addUser(req.body.email, req.body.name)
+	const id = await addUser(req.body.email, req.body.name, req.body.password)
 	res.send(`Your ID is ${id}`)
 })
 

@@ -8,7 +8,7 @@ CREATE TABLE "Kite" (
     "model" TEXT NOT NULL,
     "year" INTEGER NOT NULL,
     "size" DOUBLE PRECISION NOT NULL,
-    "description" TEXT,
+    "notes" TEXT,
     "onSale" BOOLEAN NOT NULL DEFAULT true,
     "sellerId" INTEGER NOT NULL,
     "country" TEXT NOT NULL,
@@ -23,6 +23,7 @@ CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT,
+	"password" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

@@ -17,11 +17,12 @@ export const getKites = async () => {
     return allKites;
 };
 
-export const addUser = async (email, name = undefined) => (
+export const addUser = async (email, name = undefined, password) => (
 	(await prisma.user.create({
 		data: {
 			name,
-			email
+			email,
+			password
 		}
 	})).id
 );
