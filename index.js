@@ -20,6 +20,22 @@ app.post('/signup', async (req, res) => {
 	res.send(`Your ID is ${id}`)
 })
 
+app.post('/addKite', async (req, res) => {
+    const id = await addKite(
+		req.body.sellerId,
+		req.body.price,
+		req.body.brand,
+		req.body.model,
+		req.body.year,
+		req.body.size,
+		req.body.country,
+		req.body.city,
+		req.body.address,
+		req.body.notes
+	);
+    res.send(`Your kite's ID is ${id}`);
+});
+
 app.get('/kites', async (req, res) => {
     res.send(await getKites());
 });
